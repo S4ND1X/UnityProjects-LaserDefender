@@ -5,8 +5,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //Config param
     [SerializeField] private float moveSpeed = 10f;
-    private float minX, maxX, minY, maxY, padding = 0.8f;
+    [SerializeField] private float padding = 0.8f;
+    [SerializeField] private GameObject laserPrefab;
+    [SerializeField] private float laserSpeed = 100f;
+    [SerializeField] private float projectileFiringPeriod = 0.1f;
+
+    private Coroutine firingCoroutine;
+
+    private float minX, maxX, minY, maxY;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +26,43 @@ public class Player : MonoBehaviour
     void Update()
     {
         MoveX();
+        Fire();
 
     }
+
+    IEnumerator FireWhilePressed()
+    {
+            while (true) {
+            //Aplicar rotacion que ya tiene si no tiene no habara: Quaternion
+            GameObject laser = Instantiate(laserPrefab,
+                                             transform.position,
+                                             Quaternion.identity) as GameObject;
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, laserSpeed);
+
+            yield return new WaitForSeconds(projectileFiringPeriod);
+        }
+    }
+
+
+    private void Fire()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            firingCoroutine =  StartCoroutine(FireWhilePressed());
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(firingCoroutine);
+        }
+    }
+
     private void MoveX()
     {
         //Se usa var porque automaticamente sabe que tipo de dato es
         //Se multiplica por Delta time para frames parejos y con la velocidad
         //Se le suma la posicion a la que se dirije + en la que esta
-        var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-        var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
+        var deltaX = Input.GetAxisRaw("Horizontal") * Time.deltaTime * moveSpeed;
+        var deltaY = Input.GetAxisRaw("Vertical") * Time.deltaTime * moveSpeed;
         var newXPos = Mathf.Clamp(transform.position.x + deltaX, minX, maxX);
         var newYPos = Mathf.Clamp(transform.position.y + deltaY, minY, maxY);
         transform.position = new Vector2(newXPos, newYPos);
