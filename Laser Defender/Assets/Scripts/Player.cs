@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     IEnumerator FireWhilePressed()
     {
             while (true) {
-            //Aplicar rotacion que ya tiene si no tiene no habara: Quaternion
+            //Aplicar rotacion que ya tiene si no tiene no habra: Quaternion
             GameObject laser = Instantiate(laserPrefab,
                                              transform.position,
                                              Quaternion.identity) as GameObject;
@@ -48,10 +48,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            //Se iguala la corrutina
             firingCoroutine =  StartCoroutine(FireWhilePressed());
         }
         if (Input.GetButtonUp("Fire1"))
         {
+            //Si se deja de presionar la corruttina se detiene
             StopCoroutine(firingCoroutine);
         }
     }
@@ -77,6 +79,6 @@ public class Player : MonoBehaviour
 
         //Se usa para tener la coordenadas en Y en las que es el minimo y maximo
         minY = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
-        maxY = gameCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, 0)).y;
+        maxY = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
     }
 }
