@@ -17,8 +17,8 @@ public class WaveConfig : ScriptableObject
     [SerializeField] float moveSpeed = 2f;
 
     public GameObject GetEnemyPrefab(){ return enemyPrefab; }
-    public List<Transform>GetWayPoints() {
 
+    public List<Transform>GetWayPoints() {
         var waveWayPoints = new List<Transform>();
         //Itera sobre cada hijo que sea de tipo transform como el for i in de python
         foreach(Transform child in pathPrefab.transform)
@@ -27,6 +27,7 @@ public class WaveConfig : ScriptableObject
         }
         return waveWayPoints;
     }
+
     public float GetTimeBetweenSpawn() { return timeBetweenSpawn; }
     public float GetSpawnRandomFactor() { return spawnRandomFactor; }
     public int GetNumberOfEnemies() { return numberOfEnemies; }
