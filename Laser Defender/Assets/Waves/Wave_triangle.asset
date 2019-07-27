@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85229992a6ccdfc42b4dbc1a7222bae2, type: 3}
   m_Name: Wave_triangle
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 953382107968185049, guid: ac09b6936ef005b4888684b5cbd52be7,
+  enemyPrefab: {fileID: 953382107968185049, guid: eea7f96553fcbdc45a6c98c29e5347e8,
     type: 3}
-  pathPrefab: {fileID: 1424413335833044839, guid: efbc45bfb4716d046b344d80e5e1f92d,
+  pathPrefab: {fileID: 7519775420267745022, guid: efbc45bfb4716d046b344d80e5e1f92d,
     type: 3}
   timeBetweenSpawn: 0.5
   spawnRandomFactor: 0.3

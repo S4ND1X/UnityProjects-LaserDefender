@@ -116,6 +116,10 @@ MonoBehaviour:
   explosionParticles: {fileID: 6108422670249229867, guid: 89211fc31f0f2124dae2c34b0022a3d5,
     type: 3}
   particlesDuration: 1
+  destroyClip: {fileID: 8300000, guid: ddcc8c1ea216c6a498deee25657c2f74, type: 3}
+  destroyClipVolume: 0.54
+  shootingClip: {fileID: 8300000, guid: c28bc56b678083843bece987ef44e594, type: 3}
+  shootingClipVolume: 0.1
 --- !u!60 &4120409649154690299
 PolygonCollider2D:
   m_ObjectHideFlags: 0
