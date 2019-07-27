@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    [Header("Enemy")]
     [SerializeField] private float healt = 100;
     [SerializeField] private float shotCounter;
     [SerializeField] private float minTimeBetweenShots = 0.2f;
     [SerializeField] private float maxTimeBetweenShots = 3f;
-    [SerializeField] private float enemyLaserSpeed = 10f;
-
     [SerializeField] private GameObject enemyLaserPrefab;
+    [SerializeField] private float enemyLaserSpeed = 10f;
+    [Header("VFX")]
+    [SerializeField] private GameObject explosionParticles;
+    [SerializeField] private float particlesDuration = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,13 +54,20 @@ public class Enemy : MonoBehaviour
         ProccesHit(damageDealer);
     }
 
+    private void Die()
+    {
+        Destroy(gameObject);
+        GameObject explosion =  Instantiate(explosionParticles, transform.position, transform.rotation);
+        Destroy(explosion, particlesDuration);
+    }
+
     private void ProccesHit(DamageDealer damageDealer)
     {
         healt -= damageDealer.GetDamage();
         damageDealer.Hit();
         if (healt <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
     }
 }

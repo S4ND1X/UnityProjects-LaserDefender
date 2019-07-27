@@ -110,9 +110,12 @@ MonoBehaviour:
   shotCounter: 0
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3
-  enemyLaserSpeed: 5
   enemyLaserPrefab: {fileID: 6406345636732430972, guid: 21e563808a5cc7c4f9e3c31f6e7a3f36,
     type: 3}
+  enemyLaserSpeed: 5
+  explosionParticles: {fileID: 6108422670249229867, guid: 89211fc31f0f2124dae2c34b0022a3d5,
+    type: 3}
+  particlesDuration: 1
 --- !u!60 &4120409649154690299
 PolygonCollider2D:
   m_ObjectHideFlags: 0
