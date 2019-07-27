@@ -44,14 +44,17 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         //Lo que collisiono con nosotros tiene un damage dealer
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) return; //Si no tiene damageDealer no hace nada
         ProccesHit(damageDealer);
     }
 
     private void ProccesHit(DamageDealer damageDealer)
     {
         healt -= damageDealer.GetDamage();
+        damageDealer.Hit();
         if (healt <= 0)
         {
             Destroy(gameObject);

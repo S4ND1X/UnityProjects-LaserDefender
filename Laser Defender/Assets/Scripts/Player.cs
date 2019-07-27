@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Player")]
     //Config param
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float padding = 0.8f;
+    [SerializeField] private int health = 200;
+    [Header("Projectile")]
     [SerializeField] private GameObject laserPrefab;
     [SerializeField] private float laserSpeed = 100f;
     [SerializeField] private float projectileFiringPeriod = 0.1f;
@@ -80,5 +83,23 @@ public class Player : MonoBehaviour
         //Se usa para tener la coordenadas en Y en las que es el minimo y maximo
         minY = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
         maxY = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if (!damageDealer) return; //Si no tiene damageDealer no hace nada
+        ProccesHit(damageDealer);
+    }
+
+
+    private void ProccesHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDamage();
+        damageDealer.Hit();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
