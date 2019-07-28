@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 {
-    // Start is called before the first frame update
-    
+    [SerializeField] private float waitSeconds = 1.5f;
+
+
     public void LoadStartMenu()
     {
         SceneManager.LoadScene(0);
@@ -14,12 +15,19 @@ public class Level : MonoBehaviour
 
     public void LoadGameOver()
     {
+        StartCoroutine(WaitAndLoad());
+    }
+
+    private IEnumerator WaitAndLoad()
+    {
+        yield return new WaitForSeconds(waitSeconds);
         SceneManager.LoadScene("Game Over");
     }
 
     public void LoadGameScene()
     {
         SceneManager.LoadScene("Game");
+        FindObjectOfType<GameSession>().ResetGame();
     }
 
     public void QuitGame()

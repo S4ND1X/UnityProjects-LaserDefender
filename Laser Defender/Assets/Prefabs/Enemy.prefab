@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7985c7a9564a7714491b6767774d4a17, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -106,8 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0effb05c157e8d42bcdfc5e45d2f485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healt: 100
-  shotCounter: 0
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3
   enemyLaserPrefab: {fileID: 6406345636732430972, guid: 21e563808a5cc7c4f9e3c31f6e7a3f36,
@@ -120,6 +118,8 @@ MonoBehaviour:
   destroyClipVolume: 0.54
   shootingClip: {fileID: 8300000, guid: c28bc56b678083843bece987ef44e594, type: 3}
   shootingClipVolume: 0.1
+  pointsPerKill: 10
+  healt: 100
 --- !u!60 &4120409649154690299
 PolygonCollider2D:
   m_ObjectHideFlags: 0

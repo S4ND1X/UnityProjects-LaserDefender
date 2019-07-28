@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Enemy")]
-    [SerializeField] private float healt = 100;
-    [SerializeField] private float shotCounter;
+    [Header("Enemy Config")]    
+    private float shotCounter;
     [SerializeField] private float minTimeBetweenShots = 0.2f;
     [SerializeField] private float maxTimeBetweenShots = 3f;
     [SerializeField] private GameObject enemyLaserPrefab;
@@ -18,11 +17,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] [Range(0,1)] private float destroyClipVolume = 0.7f;
     [SerializeField] private AudioClip shootingClip;
     [SerializeField] [Range(0, 1)] private float shootingClipVolume = 0.7f;
+    [Header("Enemy Stats")]
+    [SerializeField] private int pointsPerKill = 10;
+    [SerializeField] private float healt = 100;
 
+    private GameSession gameSession;
     // Start is called before the first frame update
     void Start()
     {
         shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+        gameSession = FindObjectOfType<GameSession>();
     }
 
     // Update is called once per frame
@@ -63,6 +67,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        gameSession.AddToScore(pointsPerKill);
         Destroy(gameObject);
         GameObject explosion =  Instantiate(explosionParticles, transform.position, transform.rotation);
         Destroy(explosion, particlesDuration);

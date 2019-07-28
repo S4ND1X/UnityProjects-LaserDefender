@@ -100,6 +100,7 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
+        FindObjectOfType<Level>().LoadGameOver();
         Destroy(gameObject);
         AudioSource.PlayClipAtPoint(destroyClip, Camera.main.transform.position, destroyClipVolume);
     }
@@ -112,5 +113,10 @@ public class Player : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public int GetPlayerHealth()
+    {
+        return health;
     }
 }
